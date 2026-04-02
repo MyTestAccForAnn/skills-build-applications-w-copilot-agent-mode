@@ -12,8 +12,11 @@ router.register(r'activities', ActivityViewSet)
 router.register(r'leaderboards', LeaderboardViewSet)
 router.register(r'workouts', WorkoutViewSet)
 
+import os
+codespace_name = os.environ.get('CODESPACE_NAME', '')
+
 urlpatterns = [
-    path('', api_root, name='api-root'),
+    path('', f"https://{codespace_name}-8000.app.github.dev/api/", name='api-root'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
